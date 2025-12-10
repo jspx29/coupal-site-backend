@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:5000',
+  'http://localhost:5173',
   'http://localhost:3000',
   'https://coupal-site-frontend.vercel.app',
 ];
@@ -31,7 +31,10 @@ mongoose
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log('MongoDB connection error:', err));
 
-// Routes
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend is running! 🚀' });
+});
+
 app.use('/api/items', require('./routes/items'));
 
 const PORT = process.env.PORT || 5000;
